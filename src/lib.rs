@@ -2,40 +2,13 @@
 #[error("rendering failed")]
 pub struct RenderError;
 
-pub struct Player {
-    x: f32,
-    y: f32,
-}
-
-impl Player {
-    pub fn new(x: f32, y: f32) -> Self {
-        Player { x, y }
-    }
-
-    pub fn x(&self) -> f32 {
-        self.x
-    }
-
-    pub fn y(&self) -> f32 {
-        self.y
-    }
-}
-
-pub struct WorldMap {
-    width: usize,
-    height: usize,
-    map: Vec<u32>,
-}
-
-impl WorldMap {
-    pub fn new(width: usize, height: usize, map: Vec<u32>) -> Self {
-        WorldMap { width, height, map }
-    }
-}
+pub mod math;
+pub mod player;
+pub mod world_map;
 
 pub fn render_frame(
-    player: &Player,
-    world_map: &WorldMap,
+    player: &player::Player,
+    world_map: &world_map::WorldMap,
     screen_width: usize,
     screen_height: usize,
 ) -> Result<Vec<u32>, RenderError> {
